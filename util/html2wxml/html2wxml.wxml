@@ -1,0 +1,12 @@
+<template name="html2Wxml">
+  <block wx:for="{{innerWxml}}" wx:key="index" wx:for-item="root">
+    <text wx:if="{{root.node == 'text'}}">{{root.text}}</text>
+    <image wx:if="{{root.tag == 'img'}}" src="{{root.attr.src}}"></image>
+    <block wx:if="{{root.node == 'element'}}">
+      <block wx:if="{{root.child}}" wx:key="index" wx:for="{{root.child}}" wx:for-item="tag">
+        <text wx:if="{{tag.node == 'text'}}">{{tag.text}}</text>
+        <image wx:if="{{tag.tag == 'img'}}" src="{{tag.attr.src}}"></image>
+      </block>
+    </block>
+  </block>
+</template>
